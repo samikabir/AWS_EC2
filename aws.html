@@ -1,0 +1,470 @@
+<html>
+    <head>
+        <title>The God Himself</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
+        <style>
+            .panel-footer{
+                height:50px
+            }
+            a:hover {
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"> <span class = "glyphicon glyphicon-cloud">&nbsp;</span>MyCloud</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-glass"></span> Buckets</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class = "container-fluid">
+            <form id = "createForm" enctype="multipart/form-data">
+                <div class = "col-md-12">
+                    <div class = "col-md-6">
+                        Access Key
+                        <br>
+                        <input type = "text" id = "access" class = "form-control" value = "">
+                    </div>
+                    <div class = "col-md-6">
+                        Secret Key
+                        <br>
+                        <input type = "text" id = "secret" class = "form-control" value = "">
+                    </div>
+                </div>
+                <br><br><br><br>
+                <div class = "col-md-12">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class = "glyphicon glyphicon-plus"></span>
+                                    <a data-toggle="collapse" href="#createBucketDiv">Create Bucket</a>
+                                </h4>
+                            </div>
+                            <div class = "panel-collapse collapse" id = "createBucketDiv" >
+                                <div class = "panel-body" >
+                                    <div class = "col-md-6">
+                                        Region
+                                        <br>
+                                        <select id = "location" class = "form-control" required>
+                                            <option value = "none">Select</option>
+                                        </select>
+                                </div>
+                                    <div class = "col-md-6">
+                                        Bucket Name
+                                        <br>
+                                        <input id = "bucketName" type = "text" class = "form-control">
+                                    </div>
+                                </div>
+                                <div class = "panel-footer">
+                                    <div class = "col-md-3"align = "center"><input class = "btn btn-default" type = "button"   id = "createBucket" value = "Create Bucket"></div>
+                                    <!--div class = "col-md-3" align = "center"><input class = "btn btn-default" type = "button"   id = "getRegionalBuckets" value = "Get Regional Buckets"></div-->
+                                    <div class = "col-md-3" align = "center"><input class = "btn btn-default" type = "button" id = "deleteBucket" value = "Delete Bucket"></div>
+                                    <div class = "col-md-3">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br><br><br>
+                <div class = "col-md-12">
+                    <div class="col-md-6 panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class = "glyphicon glyphicon-upload"></span>
+                                    <a data-toggle="collapse" href="#uploadObjDiv">Upload files to bucket</a>
+                                </h4>
+                            </div>
+                            <div class = "panel-collapse collapse" id = "uploadObjDiv" >
+                                <div class = "panel-body">
+                                    <div class = "col-md-6">
+                                        File
+                                        <br>
+                                        <input name="file" type="file" class = "form-control">
+                                    </div>
+                                </div>
+                                <div class = "panel-footer">
+                                    <div class = "col-md-4">&nbsp;</div>
+                                    <div class = "col-md-4" align = "center"><input class = "btn btn-default" type = "button"   id = "uploadObject" value = "Upload to Bucket"></div>
+                                    <div class = "col-md-4">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class = "glyphicon glyphicon-download"></span>
+                                    <span class = "glyphicon glyphicon-trash"></span>
+                                    <a data-toggle="collapse" href="#downloadDelDiv">Download or delete files from bucket</a>
+                                </h4>
+                            </div>
+                            <div class = "panel-collapse collapse" id = "downloadDelDiv" >
+                                <div class = "panel-body">
+                                    <br>
+                                    <div class = "col-md-6">
+                                        Save name
+                                        <br>
+                                        <input id="saveName" type="text" class = "form-control">
+                                    </div>
+                                    <div class = "col-md-6">
+                                        File name
+                                        <br>
+                                        <input id="fileName" type="text" class = "form-control">
+                                    </div>
+                                </div>
+                                <div class = "panel-footer">
+                                    <div class = "col-md-3">&nbsp;</div>
+                                    <div class = "col-md-3" align = "center"><input class = "btn btn-default" type = "button"   id = "downloadObject" value = "Download from Bucket"></div>
+                                    <div class = "col-md-3" align = "center"><input class = "btn btn-default" type = "button"   id = "deleteObject" value = "Delete from Bucket"></div>
+                                    <div class = "col-md-3">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br><br><br>
+
+                <div class = "container-fluid">
+                    <input type = "text" id = "myInput">
+                    <table id = "bucketListTable">
+                        <thead>
+                            <td>List of buckets</td>
+                        </thead>
+                    </table>
+                    <div id = "paginationArea"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id = "modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" id = "modal-body">
+              <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </body>
+    <script>
+        $.support.cors = true;
+        
+        window.onload = function(){
+            getCredentials();
+            getAllElements();
+            getAllBuckets();
+            //getAllAMIs();
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#bucketListTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        }
+        
+        function getCredentials(){
+            jQuery.ajax({
+                type: "POST",
+                url: 'getCredentials',
+                contentType: "application/json",
+                async: false,
+                dataType: "json",
+                success: function(data) {
+                    var credData = data['accesskey'];
+                    var accesskey = credData[0]
+                    var secretkey = credData[1]
+                    $("#access").val(accesskey);
+                    $("#secret").val(secretkey);
+                    console.log("access " + accesskey + " --- secret " + secretkey);                    
+                }
+            });
+        }
+        
+        function getAllElements(){
+            getAllRegions();
+        }
+        
+        function getAllAMIs(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val(),location:'us-west-1'}
+            jQuery.ajax({
+                type: "POST",
+                url: 'getAMIs',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        alert(data['data']);
+                    }
+                }
+            });
+        }
+        
+        function getAllRegions(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val()}
+            console.log(data);
+            jQuery.ajax({
+                type: "POST",
+                url: 'getAllRegions',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        var regionList = data['data'];
+                        for(var i = 0; i < regionList.length; i++){
+                            var region = regionList[i];
+                            $("#location").append("<option value = " + region + ">" + region + "</option>")
+                        }
+                    }
+                }
+            });
+        }
+
+        function getAllInstanceTypes(){
+            jQuery.ajax({
+                type: "POST",
+                url: 'getAllInstanceTypes',
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                    }
+                }
+            });
+        }
+
+        $("#createBucket").click(function(){
+            var demo = {location:$("#location").val(), name:$("#bucketName").val(), 'key':$("#access").val(),'secret':$("#secret").val()};
+            $.ajax({
+                type: "POST",
+                url: 'createBuckets',
+                data: JSON.stringify(demo),
+                dataType: "json",
+                async: false,
+                contentType: "application/json",
+                success: function(data) {
+                    console.log(data);
+                    if(data['result']=="success"){
+                        $("#modal-body").html("successfully created bucket with name " + $("#bucketName").val() + " located at " + $("#location").val());
+                        $("#modal-title").html("Create");
+                        $("#myModal").modal();
+                    }
+                },error: function(){
+                    alert("Error creating bucket");
+                }
+            }); 
+            getAllBuckets();
+        });
+        
+        $("#deleteBucket").click(function(){
+            $("#modal-title").html("Delete");
+            var cnf = confirm("Are you sure to delete?");
+            if(cnf){
+                var demo = {location:$("#location").val(), name:$("#bucketName").val(), 'key':$("#access").val(),'secret':$("#secret").val()};
+                $.ajax({
+                    type: "POST",
+                    url: 'deleteBucket',
+                    data: JSON.stringify(demo),
+                    dataType: "json",
+                    async: false,
+                    contentType: "application/json",
+                    success: function(data) {
+                        if(data['result']=="success"){
+                            $("#modal-body").html("Successfully deleted bucket with name " + $("#bucketName").val() + " located at " + $("#location").val());
+                            $("#myModal").modal();
+                        }
+                    },error: function(){
+                        $("#modal-body").html("Error deleting bucket");
+                        $("#myModal").modal();
+                    }
+                }); 
+                getAllBuckets();
+            }
+        });
+        
+        function uploadFileFromPopUp(bucketName){
+            var formData = new FormData($('#fileUpload')[0]);
+            var mapData = {'key':$("#access").val(), 'secret':$("#secret").val(), 'bucketName':bucketName}
+            formData.append('objArr', JSON.stringify(mapData));
+            uploadObject(formData);
+        }
+        
+        $('#uploadObject').click(function() {
+            $("#modal-title").html("Upload");
+            var formData = new FormData($('#createForm')[0]);
+            var mapData = {'key':$("#access").val(), 'secret':$("#secret").val(), 'bucketName':$("#bucketName").val()}
+            formData.append('objArr', JSON.stringify(mapData))
+            console.log(formData)
+            uploadObject(formData);
+        });
+        
+        function uploadObject(formData){
+            $.ajax({
+                type: 'POST',
+                url: 'uploadObject',
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if(data['result'] == "success"){
+                        $("#modal-body").html("Successfully uploaded object");
+                        $("#myModal").modal();
+                    }else{
+                        $("#modal-body").html("Error uploading Object");
+                        $("#myModal").modal();
+                    }
+                },
+            });
+        }
+        
+        $("#downloadObject").click(function(){
+            var fileName = $("#fileName").val();
+            var bucketName = $("#bucketName").val();
+            var saveName = $("#saveName").val();
+            downloadObject(fileName, bucketName, saveName);
+        });
+        
+        function downloadObject(fileName, bucketName, saveName){
+            $("#modal-title").html("Download");
+            var data = {"fileName":fileName, "bucketName":bucketName,"saveName":saveName, 'key':$("#access").val(),'secret':$("#secret").val()}
+            $.ajax({
+                type: 'POST',
+                url: 'downloadObject',
+                data: JSON.stringify(data),
+                dataType: "json",
+                async: false,
+                contentType: "application/json",
+                success: function(data) {
+                    if(data['result'] == "success"){
+                        $("#modal-body").html("Successfully downloaded Object");
+                        $("#myModal").modal();
+                    }else{
+                        $("#modal-body").html("Failed to download Object");
+                        $("#myModal").modal();
+                    }
+                },
+            });
+        }
+        
+        $("#deleteObject").click(function(){
+            alert("delObj");
+            var fileName = $("#fileName").val();
+            var bucketName = $("#bucketName").val();
+            deleteObject(fileName, bucketName);
+        });
+        
+        function deleteObject(fileName, bucketName){
+            $("#modal-title").html("Delete");
+            var cnf = confirm("Are you sure to delete the object?");
+            if(cnf){
+                var data = {"fileName":fileName, "bucketName":bucketName, 'key':$("#access").val(),'secret':$("#secret").val()}
+                $.ajax({
+                    type: 'POST',
+                    url: 'deleteObject',
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    async: false,
+                    contentType: "application/json",
+                    success: function(data) {
+                        if(data['result'] == "success"){
+                            $("#modal-body").html("Successfully deleted Object");
+                            $("#myModal").modal();
+                        }else{
+                            $("#modal-body").html("Failed to delete Object");
+                            $("#myModal").modal();
+                        }
+                    },
+                });
+            }
+        }
+        $("#getRegionalBuckets").click(function(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val(),'location':$("#location").val()}
+            $.ajax({
+                type: "POST",
+                url: 'getAllBuckets',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: function(data) {
+                    if(data['result']=="success"){
+                        alert(data['data']);
+                        /*for(var i = 0; i < data['data'].length; i++){
+                            var name = data['data'][i];
+                            $("#bucketListTable").append("<tr><td><a onclick = getObjectList('"+name+"')>"+name+"</a></td></tr>");
+                        }*/
+                    }
+                }
+            });
+        });
+        
+        function getAllBuckets(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val(),'location':'all'}
+            $.ajax({
+                type: "POST",
+                url: 'getAllBuckets',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: function(data) {
+                    if(data['result']=="success"){
+                        for(var i = 0; i < data['data'].length; i++){
+                            var name = data['data'][i];
+                            $("#bucketListTable").append("<tr><td><a onclick = getObjectList('"+name+"')>"+name+"</a></td></tr>");
+                        }
+                    }
+                }
+            });
+        }
+        
+        function getObjectList(name){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val(),'bucketName':name}
+            $.ajax({
+                type: "POST",
+                url: 'getObjectsOfBucket',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: function(data) {
+                    if(data['result']=="success"){
+                        var tableData = '';
+                        var objList = data['data'];
+                        //fileName, bucketName, saveName
+                        for(var i = 0; i < objList.length; i++){
+                            tableData = tableData + "<div class = 'col-md-12'><div class = 'col-md-4'>"+objList[i]+"</div><div class = 'col-md-4'><a onclick = downloadObject('"+objList[i]+"','"+name+"','"+objList[i]+"')><span class = 'glyphicon glyphicon-download'></span></a></div><div class = 'col-md-4'><a onclick = deleteObject('"+objList[i]+"','"+name+"')><span class = 'glyphicon glyphicon-remove'></span></a></div></div>";
+                        }
+                        var uploadOpt = "<div class = 'col-md-12'><form id = 'uploadFromPopup' enctype='multipart/form-data'><input type = 'file' id = 'fileUpload' name = 'fileUpload' class = 'form-control'></div><div class = 'col-md-12'><input type = 'button' value = 'upload' onclick = uploadFileFromPopUp('"+name+"')></div></form></div>";
+                        tableData = uploadOpt + tableData;
+                        $("#modal-title").html("Objects in " + name);
+                        $("#modal-body").html(tableData);
+                        $("#myModal").modal();
+                        console.log(data['data']);
+                    }
+                }
+            });
+        }
+    </script>
+</html>

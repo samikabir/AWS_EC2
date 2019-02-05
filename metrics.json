@@ -1,0 +1,2251 @@
+response = client.cloudwatch.get_metric_statistics(
+
+                MetricDataQueries=[
+                    {
+                        'Id': id,
+                        'MetricStat': {
+                            'Metric': {
+                                'Namespace': nameSpace,
+                                'MetricName': metricName,
+                                'Dimensions': [
+                                    {
+                                        'Name': dimensionName,
+                                        'Value': dimensionValue
+                                    },
+                                ]
+                            },
+                            'Period': int(timeInterval),
+                            'Stat': statistic, #average, sum etc
+                            'Unit': unit #'Seconds'|'Microseconds'|'Milliseconds'|'Bytes'|'Kilobytes'|'Megabytes'|'Gigabytes'|'Terabytes'|'Bits'|'Kilobits'|'Megabits'|'Gigabits'|'Terabits'|'Percent'|'Count'|'Bytes/Second'|'Kilobytes/Second'|'Megabytes/Second'|'Gigabytes/Second'|'Terabytes/Second'|'Bits/Second'|'Kilobits/Second'|'Megabits/Second'|'Gigabits/Second'|'Terabits/Second'|'Count/Second'|'None'
+                        },
+                    },
+                ],
+                StartTime=datetime.now() - timedelta(seconds=int(fromTime)),
+                EndTime=datetime.now()
+            )
+
+
+{
+    "Metrics": [
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1S5AXL3XK5ZSR"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1S5AXL3XK5ZSR"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1S5AXL3XK5ZSR"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1S5AXL3XK5ZSR"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1S5AXL3XK5ZSR"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1S5AXL3XK5ZSR"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskReadBytes",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskWriteOps",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkPacketsOut",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskWriteBytes",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkPacketsIn",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUUtilization",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskReadOps",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUCreditUsage",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUCreditBalance",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUSurplusCreditsCharged",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUSurplusCreditBalance",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "StatusCheckFailed_System",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "StatusCheckFailed_Instance",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "StatusCheckFailed",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeWriteOps",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "BurstBalance",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeIdleTime",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeWriteBytes",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeReadOps",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeTotalReadTime",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeQueueLength",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeReadBytes",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EBS",
+            "MetricName": "VolumeTotalWriteTime",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-037e3b30c53eb67a0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3NX79TORYT3ZB"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3NX79TORYT3ZB"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3NX79TORYT3ZB"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3NX79TORYT3ZB"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3NX79TORYT3ZB"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E13DBSJSCC6MU8"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E13DBSJSCC6MU8"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E13DBSJSCC6MU8"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E13DBSJSCC6MU8"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E13DBSJSCC6MU8"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E13DBSJSCC6MU8"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3DODI0P529RA5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3DODI0P529RA5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ERIOYVOADK5I0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ERIOYVOADK5I0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ERIOYVOADK5I0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ECSZFUKJPY7EZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ECSZFUKJPY7EZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ECSZFUKJPY7EZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ECSZFUKJPY7EZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ECSZFUKJPY7EZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ECSZFUKJPY7EZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AmazonCloudWatch"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EJRMOZFHLNG3O"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkIn",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "BucketSizeBytes",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "StandardStorage"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "anp-testc837a4a7-d23b-41f4-a6ee-5a14049dfe64"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "NumberOfObjects",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "AllStorageTypes"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "anp-testc837a4a7-d23b-41f4-a6ee-5a14049dfe64"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "BucketSizeBytes",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "StandardStorage"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "trial1993"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "NumberOfObjects",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "AllStorageTypes"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "trial1993"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E18AFMOPQ9FGA3"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E18AFMOPQ9FGA3"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E18AFMOPQ9FGA3"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EES9T074SXJT5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EES9T074SXJT5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EES9T074SXJT5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EES9T074SXJT5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EES9T074SXJT5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EES9T074SXJT5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1KH5TGXE6SM3S"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1KH5TGXE6SM3S"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1KH5TGXE6SM3S"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1KH5TGXE6SM3S"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1KH5TGXE6SM3S"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1KH5TGXE6SM3S"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ERIOYVOADK5I0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkOut",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ed4bf61815369f2e"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W4I7ONCZA3GF"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W4I7ONCZA3GF"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W4I7ONCZA3GF"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W4I7ONCZA3GF"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W4I7ONCZA3GF"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W4I7ONCZA3GF"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3DODI0P529RA5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3DODI0P529RA5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3DODI0P529RA5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3DODI0P529RA5"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Polly",
+            "MetricName": "2XXCount",
+            "Dimensions": [
+                {
+                    "Name": "Operation",
+                    "Value": "DescribeVoices"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Polly",
+            "MetricName": "5XXCount",
+            "Dimensions": [
+                {
+                    "Name": "Operation",
+                    "Value": "DescribeVoices"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Polly",
+            "MetricName": "4XXCount",
+            "Dimensions": [
+                {
+                    "Name": "Operation",
+                    "Value": "DescribeVoices"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1W12S974I35IM"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AWSMarketplace"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/DynamoDB",
+            "MetricName": "ProvisionedWriteCapacityUnits",
+            "Dimensions": [
+                {
+                    "Name": "TableName",
+                    "Value": "Student"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1A4UEC6T4J81C"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1A4UEC6T4J81C"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1A4UEC6T4J81C"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1A4UEC6T4J81C"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1A4UEC6T4J81C"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1A4UEC6T4J81C"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EJRMOZFHLNG3O"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EJRMOZFHLNG3O"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EJRMOZFHLNG3O"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EJRMOZFHLNG3O"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EJRMOZFHLNG3O"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "awskms"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AWSQueueService"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E18AFMOPQ9FGA3"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/DynamoDB",
+            "MetricName": "ConsumedWriteCapacityUnits",
+            "Dimensions": [
+                {
+                    "Name": "TableName",
+                    "Value": "Student"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1W12S974I35IM"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1W12S974I35IM"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1W12S974I35IM"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1W12S974I35IM"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1W12S974I35IM"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E20LTND9Q66ERA"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E20LTND9Q66ERA"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E20LTND9Q66ERA"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E20LTND9Q66ERA"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E20LTND9Q66ERA"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E20LTND9Q66ERA"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W1BEIA18JRJ2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W1BEIA18JRJ2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W1BEIA18JRJ2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W1BEIA18JRJ2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W1BEIA18JRJ2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E2W1BEIA18JRJ2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "NumberOfObjects",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "AllStorageTypes"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "fersamp"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "BucketSizeBytes",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "StandardStorage"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "fersamp"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "NumberOfObjects",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "AllStorageTypes"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "amirbucketfromcode"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "BucketSizeBytes",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "StandardStorage"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "amirbucketfromcode"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E18AFMOPQ9FGA3"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/DynamoDB",
+            "MetricName": "ProvisionedReadCapacityUnits",
+            "Dimensions": [
+                {
+                    "Name": "TableName",
+                    "Value": "Student"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "NumberOfObjects",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "AllStorageTypes"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "malijose-jcloud-test2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/S3",
+            "MetricName": "BucketSizeBytes",
+            "Dimensions": [
+                {
+                    "Name": "StorageType",
+                    "Value": "StandardStorage"
+                },
+                {
+                    "Name": "BucketName",
+                    "Value": "malijose-jcloud-test2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AmazonEFS"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3RMOIIAGGP2D2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3RMOIIAGGP2D2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3RMOIIAGGP2D2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3RMOIIAGGP2D2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3RMOIIAGGP2D2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3RMOIIAGGP2D2"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E3NX79TORYT3ZB"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ERIOYVOADK5I0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ERIOYVOADK5I0"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AmazonEC2"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E18AFMOPQ9FGA3"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AWSDataTransfer"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AmazonS3"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AmazonSNS"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EX20U1ASDG885"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EX20U1ASDG885"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EX20U1ASDG885"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EX20U1ASDG885"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EX20U1ASDG885"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "EX20U1ASDG885"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AmazonCloudFront"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ELU3VS8BRJVWT"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ELU3VS8BRJVWT"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ELU3VS8BRJVWT"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ELU3VS8BRJVWT"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ELU3VS8BRJVWT"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "ELU3VS8BRJVWT"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesDownloaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1VGSWGFK43PXZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "Requests",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1VGSWGFK43PXZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "BytesUploaded",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1VGSWGFK43PXZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "TotalErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1VGSWGFK43PXZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "5xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1VGSWGFK43PXZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/CloudFront",
+            "MetricName": "4xxErrorRate",
+            "Dimensions": [
+                {
+                    "Name": "Region",
+                    "Value": "Global"
+                },
+                {
+                    "Name": "DistributionId",
+                    "Value": "E1VGSWGFK43PXZ"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/DynamoDB",
+            "MetricName": "ConsumedReadCapacityUnits",
+            "Dimensions": [
+                {
+                    "Name": "TableName",
+                    "Value": "Student"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/Billing",
+            "MetricName": "EstimatedCharges",
+            "Dimensions": [
+                {
+                    "Name": "ServiceName",
+                    "Value": "AmazonDynamoDB"
+                },
+                {
+                    "Name": "Currency",
+                    "Value": "USD"
+                }
+            ]
+        }
+    ]
+}

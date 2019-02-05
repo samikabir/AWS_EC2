@@ -1,0 +1,700 @@
+<html>
+    <head>
+        <title>EC2</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <style>
+            .panel-footer{
+                height:50px
+            }
+            a:hover {
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"> <span class = "glyphicon glyphicon-cloud">&nbsp;</span>MyCloud</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-glass"></span> Buckets</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class = "container-fluid">
+            <h3>Elastic Cloud Compute</h3>
+        </div>
+        <div class = "container-fluid" style = "margin-bottom:40px">
+            <form id = "createForm" enctype="multipart/form-data">
+                <div class = "col-md-12">
+                    <div class = "col-md-6">
+                        Access Key
+                        <br>
+                        <input type = "text" id = "access" class = "form-control" value = "">
+                    </div>
+                    <div class = "col-md-6">
+                        Secret Key
+                        <br>
+                        <input type = "text" id = "secret" class = "form-control" value = "">
+                    </div>
+                </div>
+                <div class = "col-md-12">
+                    <div class = "col-md-6">
+                        Region
+                        <br>
+                        <select id = "location" class = "form-control" onchange="getSecurityGroups()" required>
+                            <option value = "none">Select</option>
+                        </select>
+                    </div>
+                    <div class = "col-md-6">
+                        Security Group
+                        <br>
+                        <select id = "securityGroup" class = "form-control" onchange = "updateVPC()" required disabled>
+                            <option value = "none">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "col-md-12">
+                    <div class = "col-md-6">
+                        Instance Type
+                        <br>
+                        <select id = "instanceType" class = "form-control" required>
+                            <option value = "none">Select</option>
+                        </select>
+                    </div>
+                    <div class = "col-md-6">
+                        AMI
+                        <input type = "radio" name = "amiType" value = "default" checked>Default
+                        <input type = "radio" name = "amiType" value = "all">All
+
+                        <br>
+                        <select id = "ami" class = "form-control" required >
+                            <option value = "ami-0f65671a86f061fcd">Ubuntu 18.04</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "col-md-12">
+                    <div class = "col-md-6">
+                        VPC
+                        <br>
+                        <input type = "text" id = "vpc" class = "form-control" readonly>
+                    </div>
+                    <div class = "col-md-6">
+                        Key
+                        <br>
+                        <select id = "keyPair" class = "form-control" required onchange = "checkKeyPair()" disabled>
+                            <option value = "none">Select</option>
+                        </select>
+                        <br>
+                        <input type = "text" id = "createKeyPair" class = "form-control" hidden>
+                    </div>
+                </div>
+                <div class = "col-md-12">
+                    <div class = "col-md-6">
+                        Volume
+                        <br>
+                        <input type = "text" id = "volume" class = "form-control" >
+                    </div>
+                    <div class = "col-md-6">
+                        Delete On Termination
+                        <br>
+                        <select id = "deleteOnTermination" class = "form-control" required >
+                            <option value = "false">False</option>
+                            <option value = "True">True</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "col-md-12">
+                    <div class = "col-md-6">
+                        Number of Instances
+                        <br>
+                        <input type = "number" min = "1" max = "10" value = "1" id = "count" >
+                    </div>
+                    <div class = "col-md-6">
+                        Monitoring
+                        <br>
+                        <select id = "monitoring" class = "form-control" required >
+                            <option value = "false">False</option>
+                            <option value = "True">True</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "col-md-12" >
+                    <div class = 'col-md-6' > Instance Name </div>
+                    <div class = 'col-md-6'><input type = 'text' id = 'instanceName' class = 'form-control'></div>
+                </div>
+                <div class = "col-md-12">
+                    <div class = "col-md-4">
+                        &nbsp;
+                    </div>
+                    <div class = "col-md-4">
+                        <input type = "button" value = "Submit" id = "createInstance" class = "btn btn-primary">
+                    </div>
+                    <div class = "col-md-4">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class = "col-md-12">
+                    <input type = "text" id = "myInput" class = "form-control" >
+                </div>
+                <div class = "col-md-12" id = "instanceListDiv" style = "margin-top: 30px">
+                    <table id = "instanceList" class = "table table-striped table-bordered">
+                        <thead class = "thead-light">
+                            <th>Instance ID</th>
+                            <th>IP Address</th>
+                            <th>Instance Name</th>
+                            <th>Instance Current State</th>
+                            <th>Want to change to?</th>
+                            <th>Terminate?</th>
+                        </thead>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id = "modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" id = "modal-body">
+              <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    <div class="modal fade" id="metricModal" role="dialog">
+        <div class="metric-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="metric-title" id = "metric-title">Metrics - powered by cloudwatch</h4>
+            </div>
+            <div class="metric-body" id = "metric-body">
+                <div class = "container-fluid">
+                    <div class = "col-md-6">
+                        <select id = "metricName" class = "form-control">
+                            <option value = "none">Select Metric</option>
+                            <option value = "NetworkIn">Network In</option>
+                            <option value = "NetworkOut">Network Out</option>
+                            <option value = "DiskReadOps">Disk Read Ops</option>
+                            <option value = "DiskReadBytes">Disk Read Bytes</option>
+                            <option value = "DiskWriteOps">Disk Write Ops</option>
+                            <option value = "DiskWriteBytes">Disk Write Bytes</option>
+                            <option value = "CPUUtilization">CPU Utilization</option>
+                            <option value = "NetworkPacketsIn">Network Packets In</option>
+                            <option value = "NetworkPacketsOut">Network Packets Out</option>
+                        </select>
+                    </div>
+                    <div class = "col-md-6">
+                        <select id = "timeInterval" class="form-control">
+                            <option value = "none">Select time interval</option>
+                            <option value = "300">5 min</option>
+                            <option value = "600">10 min</option>
+                            <option value = "900">15 min</option>
+                            <option value = "1200">20 min</option>
+                            <option value = "1500">25 min</option>
+                            <option value = "1800">30 min</option>
+                            <option value = "2100">35 min</option>
+                            <option value = "2400">40 min</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "container-fluid">
+                    <div class = "col-md-6">
+                        <select id = "statistic" class = "form-control">
+                            <option value = "none">Select Statistic</option>
+                            <option value = "Sum">Sum</option>
+                            <option value = "Average">Average</option>
+                            <option value = "Maximum">Maximum</option>
+                        </select>
+                    </div>
+                    <div class = "col-md-6">
+                        <select id = "fromTime" class="form-control">
+                            <option value = "none">Select from</option>
+                            <option value = "864000">10 days</option>
+                            <option value = "86400">1 day</option>
+                            <option value = "43200">Half day</option>
+                            <option value = "3600">Past hour</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "container-fluid">
+                    <div class = "col-md-4">&nbsp;</div>
+                    <div class = "col-md-4"><input type = "button" onclick = "getMetricData()" value = "Get Data"></div>
+                    <div class = "col-md-4">&nbsp;</div>
+                </div>
+                <div class = "container-fluid">
+                    <div id = "metricGraph"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </body>
+    <script>
+        $.support.cors = true;
+
+        var instanceTypeList = ['t1.micro','t2.nano','t2.micro','t2.small','t2.medium','t2.large','t2.xlarge','t2.2xlarge','t3.nano','t3.micro','t3.small','t3.medium','t3.large','t3.xlarge','t3.2xlarge','m1.small','m1.medium','m1.large','m1.xlarge','m3.medium','m3.large','m3.xlarge','m3.2xlarge','m4.large','m4.xlarge','m4.2xlarge','m4.4xlarge','m4.10xlarge','m4.16xlarge','m2.xlarge','m2.2xlarge','m2.4xlarge','cr1.8xlarge','r3.large','r3.xlarge','r3.2xlarge','r3.4xlarge','r3.8xlarge','r4.large','r4.xlarge','r4.2xlarge','r4.4xlarge','r4.8xlarge','r4.16xlarge','r5.large','r5.xlarge','r5.2xlarge','r5.4xlarge','r5.8xlarge','r5.12xlarge','r5.16xlarge','r5.24xlarge','r5.metal','r5a.large','r5a.xlarge','r5a.2xlarge','r5a.4xlarge','r5a.12xlarge','r5a.24xlarge','r5d.large','r5d.xlarge','r5d.2xlarge','r5d.4xlarge','r5d.8xlarge','r5d.12xlarge','r5d.16xlarge','r5d.24xlarge','r5d.metal','x1.16xlarge','x1.32xlarge','x1e.xlarge','x1e.2xlarge','x1e.4xlarge','x1e.8xlarge','x1e.16xlarge','x1e.32xlarge','i2.xlarge','i2.2xlarge','i2.4xlarge','i2.8xlarge','i3.large','i3.xlarge','i3.2xlarge','i3.4xlarge','i3.8xlarge','i3.16xlarge','i3.metal','hi1.4xlarge','hs1.8xlarge','c1.medium','c1.xlarge','c3.large','c3.xlarge','c3.2xlarge','c3.4xlarge','c3.8xlarge','c4.large','c4.xlarge','c4.2xlarge','c4.4xlarge','c4.8xlarge','c5.large','c5.xlarge','c5.2xlarge','c5.4xlarge','c5.9xlarge','c5.18xlarge','c5d.large','c5d.xlarge','c5d.2xlarge','c5d.4xlarge','c5d.9xlarge','c5d.18xlarge','cc1.4xlarge','cc2.8xlarge','g2.2xlarge','g2.8xlarge','g3.4xlarge','g3.8xlarge','g3.16xlarge','g3s.xlarge','cg1.4xlarge','p2.xlarge','p2.8xlarge','p2.16xlarge','p3.2xlarge','p3.8xlarge','p3.16xlarge','d2.xlarge','d2.2xlarge','d2.4xlarge','d2.8xlarge','f1.2xlarge','f1.4xlarge','f1.16xlarge','m5.large','m5.xlarge','m5.2xlarge','m5.4xlarge','m5.12xlarge','m5.24xlarge','m5a.large','m5a.xlarge','m5a.2xlarge','m5a.4xlarge','m5a.12xlarge','m5a.24xlarge','m5d.large','m5d.xlarge','m5d.2xlarge','m5d.4xlarge','m5d.12xlarge','m5d.24xlarge','h1.2xlarge','h1.4xlarge','h1.8xlarge','h1.16xlarge','z1d.large','z1d.xlarge','z1d.2xlarge','z1d.3xlarge','z1d.6xlarge','z1d.12xlarge','u-6tb1.metal','u-9tb1.metal','u-12tb1.metal'];
+
+        window.onload = function(){
+            getCredentials();
+            getAllRegions();
+            //getAllInstances();
+            listAllInstances();
+            for(var i = 0; i < instanceTypeList.length; i++){
+                $("#instanceType").append("<option value ="+instanceTypeList[i]+">"+instanceTypeList[i]+"</option>");
+            }
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#instanceList tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        };
+
+        function getCredentials(){
+            jQuery.ajax({
+                type: "POST",
+                url: 'getCredentials',
+                contentType: "application/json",
+                async: false,
+                dataType: "json",
+                success: function(data) {
+                    var credData = data['accesskey'];
+                    var accesskey = credData[0];
+                    var secretkey = credData[1];
+                    $("#access").val(accesskey);
+                    $("#secret").val(secretkey);
+                    console.log("access " + accesskey + " --- secret " + secretkey);                    
+                }
+            });
+        }
+
+        $("input[name='amiType']").change(function(){
+            var selected = $("input[name='amiType']:checked"). val();
+            if(selected == "all") {
+                getAllAMIs();
+            }else{
+                loadDefaultAMIs();
+            }
+        });
+        
+        function getAllAMIs(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val(),location:$("#location").val()}
+            jQuery.ajax({
+                type: "POST",
+                url: 'getAMIs',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        $("#ami").empty();
+                        amiList = data['data'];
+                        for(var i = 0; i < Object.keys(data['data']).length; i++){
+                            var amiId = Object.keys(amiList)[i];
+                            var amiDesc = amiList[amiId];
+                            $("#ami").append("<option value = '"+amiId+"'>"+amiId + " - " + amiDesc +"</option>")
+                        }
+                        console.log(data['data']);
+                    }
+                }
+            });
+        }
+
+        AMIList = {"us-east-2" : "ami-15e9c770", "us-east-1": "ami-55ef662f",
+                      "us-west-1": "ami-a51f27c5", "us-west-2": "ami-bf4193c7",
+                      "ap-south-1": "ami-d5c18eba", "ap-northeast-2": "ami-1196317f",
+                      "eu-central-1": "ami-bf2ba8d0", "eu-west-1": "ami-1a962263",
+                      "eu-west-2": "ami-e7d6c983"};
+
+        function loadDefaultAMIs(){
+            $("#ami").empty();
+            var location = $("#location").val();
+            var amiId = AMIList[location];
+            $("#ami").append("<option value = '"+amiId+"'>"+amiId +"</option>")
+        }
+
+        function checkKeyPair(){
+            if($("#keyPair").val() == "create"){
+                $("#createKeyPair").show();
+            }
+        }
+
+        function changeInstanceState(instanceId, toState, region) {
+            var cnf = confirm("Are you sure you want to " + toState + " instance " + instanceId + "?");
+            if (cnf) {
+                var data = {
+                    'key': $("#access").val(),
+                    'secret': $("#secret").val(),
+                    'instanceId': instanceId,
+                    'toState': toState,
+                    'region': region
+                };
+                jQuery.ajax({
+                    type: "POST",
+                    url: 'changeInstanceState',
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data['result'] == "success") {
+                            $("#modal-title").html("Change state");
+                            $("#modal-body").html("State of " + instanceId + " successfully changed to " + toState);
+                            $("#myModal").modal();
+                            console.log(data['data']);
+                        }
+                    }
+                });
+            }
+        }
+
+        function listAllInstances(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val()}
+            console.log(data);
+            jQuery.ajax({
+                type: "POST",
+                url: 'showInstances',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        var instanceList = data['data'];
+                        for(var i = 0; i < Object.keys(instanceList).length; i++){
+                            var instanceId = Object.keys(instanceList)[i];
+                            var instanceInfo = instanceList[instanceId];
+                            var state = instanceInfo['state'];
+                            var name = instanceInfo['name'];
+                            var monitoring = instanceInfo['monitoring'];
+                            var privateIP = instanceInfo['privateIP'];
+                            var publicIP = instanceInfo['publicIP'];
+                            var platform = instanceInfo['platform'];
+                            var key = instanceInfo['keyPair'];
+                            if(name == "" || name == "undefined"){
+                                name = "-";
+                            }
+                            var region = instanceInfo['region'];
+                            $("#instanceList").append("<tr>");
+                            $("#instanceList").append("<td><a onclick = getMetrics('"+instanceId+"','"+region+"')>"+instanceId+"</a><br>"+name+"</td>");
+                            $("#instanceList").append("<td><a onclick = showLogin('"+publicIP+"','"+key+"','"+platform+"','"+state+"')>"+privateIP+"</a><br>"+publicIP+"</td>");
+                            if(state == "stopped"){
+                                $("#instanceList").append("<td><span class = 'glyphicon glyphicon-stop'> Stopped</span></td>");
+                                $("#instanceList").append("<td><a onclick = changeInstanceState('"+instanceId+"','start','"+region+"')><span class = 'glyphicon glyphicon-play-circle'> Want to run?</span></a></td>");
+                            }else{
+                                $("#instanceList").append("<td><span class = 'glyphicon glyphicon-play-circle'> Running</span></td>");
+                                $("#instanceList").append("<td><a onclick = changeInstanceState('"+instanceId+"','stop','"+region+"')><span class = 'glyphicon glyphicon-stop'> Want to stop?</span></a></td>");
+                            }
+                            if(monitoring == "disabled"){
+                                $("#instanceList").append("<td><a onclick = enableMonitoring('"+instanceId+"','"+region+"','enable')>Enable Monitoring</a></td>");
+                            }else{
+                                $("#instanceList").append("<td><a onclick = getMetrics('"+instanceId+"','"+region+"')>Get Status</a><br>" +
+                                    "<a onclick = enableMonitoring('"+instanceId+"','"+region+"','disable')>Disable Monitoring</a></td>");
+                            }
+                            $("#instanceList").append("<td><a onclick = changeInstanceState('"+instanceId+"','terminate','"+region+"')><span class = 'glyphicon glyphicon-trash'> Terminate?</span></a></td>");
+                            $("#instanceList").append("</tr>");
+                        }
+                    }
+                }
+            });
+        }
+
+        function enableMonitoring(instanceId, region, to){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val()}
+            data['instanceId'] = instanceId;
+            data['region'] = region;
+            data['to'] = to;
+            jQuery.ajax({
+                type: "POST",
+                url: 'changeMonitoringState',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        $("#modal-title").html("Success");
+                        $("#modal-body").html(to + "d monitoring on " + instanceId + " successfully");
+                        $("#myModal").modal();
+                    }
+                }
+            });
+        }
+
+        function showLogin(ip, key, platform, state){
+            $("#modal-title").html("Login");
+            if(state == "stopped"){
+                 $("#modal-body").html("Start the machine to login");
+            }else {
+                if (platform.indexOf("win") == -1) {
+                    $("#modal-body").html("Open terminal and run the command, after changing the USER, with full path to key<br>");
+                    $("#modal-body").append("ssh -i " + key + " USER@" + ip);
+                } else {
+                    $("#modal-body").html("Use Remote desktop with key - " + key + " and IP address - " + ip);
+                }
+            }
+            $("#myModal").modal();
+        }
+
+        var metricId;
+        var metricRegion;
+        function getMetrics(instanceId, region){
+            $("#metric-title").text("Metric options for " + instanceId);
+            $("#metricModal").modal();
+            metricId = instanceId;
+            metricRegion = region;
+        }
+
+        function getMetricData(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val()}
+            var statistic = $("#statistic").val();
+            var metricName = $("#metricName").val();
+            var timeInterval = $("#timeInterval").val();
+            var fromTime = $("#fromTime").val();
+            var toTime = 0;
+            data['region'] = metricRegion;
+            data['nameSpace'] = 'AWS/EC2';
+            data['dimensionName'] = 'InstanceId';
+            data['dimensionValue'] = metricId;
+            data['metricName'] = metricName;
+            data['timeInterval'] = timeInterval;
+            data['statistic'] = statistic;
+            data['fromTime'] = fromTime;
+            data['toTime'] = toTime;
+            var metricArray = [];
+            var dataArr = ['Time', metricName];
+            metricArray.push(dataArr);
+            if(fromTime / timeInterval > 1440){
+                while(fromTime / timeInterval > 1440){
+                    fromTime = fromTime - (1440*timeInterval);
+                    data['fromTime'] = fromTime;
+                    data['toTime'] = toTime;
+                    console.log(data);
+                    var recvdArr = drawMetricGraph(data, statistic);
+                    toTime = toTime + (1440*timeInterval);
+                    for(var i = 0; i < recvdArr.length; i++){
+                        metricArray.push(recvdArr[i]);
+                    }
+                }
+            }else{
+                var recvdArr = drawMetricGraph(data, statistic);
+                for(var i = 0; i < recvdArr.length; i++){
+                    metricArray.push(recvdArr[i]);
+                }
+            }
+            drawGraph(metricArray, metricName);
+        }
+
+        function drawMetricGraph(data, statistic){
+            var metricArray = [];
+            jQuery.ajax({
+                type: "POST",
+                url: 'getMetricData',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                async: false,
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        var resultData = data['data'];
+                        var dataPoints = resultData['Datapoints'];
+                        console.log(dataPoints);
+                        for(var i = 0; i < dataPoints.length; i++){
+                            var tempArr = [];
+                            var point = dataPoints[i];
+                            tempArr.push(new Date(point['Timestamp']));
+                            tempArr.push(point[statistic]);
+                            metricArray.push(tempArr);
+                        }
+                        console.log(metricArray);
+                    }
+                }
+            });
+            return metricArray;
+        }
+
+        function drawGraph(dataToDraw, metricName){
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(dataToDraw);
+                var options = {
+                    title: 'Metrics for ' + metricName,
+                    curveType: 'function',
+                    legend: { position: 'bottom' }
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('metricGraph'));
+                chart.draw(data, options);
+            }
+        }
+
+        function getAllRegions(){
+            var data = {'key':$("#access").val(),'secret':$("#secret").val()}
+            console.log(data);
+            jQuery.ajax({
+                type: "POST",
+                url: 'getAllRegions',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        var regionList = data['data'];
+                        for(var i = 0; i < regionList.length; i++){
+                            var region = regionList[i];
+                            $("#location").append("<option value = " + region + ">" + region + "</option>");
+                        }
+                    }
+                }
+            });
+        }
+
+        var securityGroupList;
+        function getSecurityGroups(){
+            loadDefaultAMIs();
+            $("#securityGroup").prop('disabled', false);
+            $("#securityGroup").empty();
+            getKeyPairs();
+            var data = {'key':$("#access").val(),'secret':$("#secret").val(),'region':$("#location").val()}
+            jQuery.ajax({
+                type: "POST",
+                url: 'getSecurityGroups',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        $("#securityGroup").append("<option value = 'none'>Select</option>");
+//                        $("#securityGroup").append("<option value = 'create'>Create New</option>");
+                        var responseData = data['data'];
+                        securityGroupList = responseData['SecurityGroups'];
+                        for(var i = 0; i < securityGroupList.length; i++){
+                            var securityGroup = securityGroupList[i];
+                            $("#securityGroup").append("<option value = " + securityGroup['GroupId'] + ">" + securityGroup['GroupId'] + " - " + securityGroup['Description'] + "</option>")
+                        }
+                    }else{
+                        $("#securityGroup").append("<option value = 'None'>No security group found</option>");
+                    }
+                }
+            });
+        }
+
+        function getKeyPairs(){
+            $("#keyPair").prop('disabled', false);
+            $("#keyPair").empty();
+            var data = {'key':$("#access").val(),'secret':$("#secret").val(),'region':$("#location").val()}
+            jQuery.ajax({
+                type: "POST",
+                url: 'getkeyPairs',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        var responseData = data['data'];
+                        $("#keyPair").append("<option value = 'none'>Select</option>");
+                        $("#keyPair").append("<option value = 'create'>Create New</option>");
+                        var keyPairList = responseData['KeyPairs'];
+                        for(var i = 0; i < keyPairList.length; i++){
+                            var keyPair = keyPairList[i];
+                            $("#keyPair").append("<option value = " + keyPair['KeyName'] + ">"+keyPair['KeyName'] +"</option>");
+                        }
+                    }else{
+                        $("#keyPair").append("<option value = 'create new'>Create New</option>");
+                    }
+                }
+            });
+        }
+
+        $("#action").click(function(){
+            var checkedVals = $('.stateCheck:checkbox:checked').map(function() {
+                return this.id;
+            }).get();
+            alert(checkedVals.join(","));
+        });
+
+        $("#createInstance").click(function(){
+            //keyname, region, instanceType, instanceName, deleteOnTermination, volumeSize, ami, count, monitoring, securityGroup
+            var data = {'key':$("#access").val(),'secret':$("#secret").val()}
+            data['keyname'] = $("#keyPair").val();
+            data['keyCreate'] = 'no';
+            if($("#keyPair").val() == "create"){
+                data['keyname'] = $("#createKeyPair").val();
+                data['keyCreate'] = 'yes';
+            }
+            data['region'] = $("#location").val();
+            data['instanceType'] = $("#instanceType").val();
+            data['instanceName'] = $("#instanceName").val();
+            data['deleteOnTermination'] = $("#deleteOnTermination").val();
+            data['volumeSize'] = $("#volume").val();
+            data['ami'] = $("#ami").val();
+            data['count'] = $("#count").val();
+            data['monitoring'] = $("#monitoring").val();
+            data['securityGroup'] = $("#securityGroup").val();
+            jQuery.ajax({
+                type: "POST",
+                url: 'createInstance',
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    if(data['result']=="success"){
+                        console.log(data);
+                        instanceIds = [];
+                        var responseData = data['data'];
+                        var instanceDataList = responseData['Instances'];
+                        for(var i = 0; i < instanceDataList.length; i++){
+                            instanceData = instanceDataList[i];
+                            instanceIds.push(instanceData['InstanceId']);
+                        }
+                        var keyData = data['keypair'];
+                        var modalData = "Instances created with IDs - " + instanceIds;
+                        if(keyData != 'none'){
+                            var a = document.createElement("a");
+                            var file = new Blob([keyData], {type: "text/plain"});
+                            a.href = URL.createObjectURL(file);
+                            a.download = $("#createKeyPair").val()+".pem";
+                            a.click();
+                            modalData = modalData + ". Your new key will be saved to your browser download path."
+                        }
+                        $("#modal-title").html("Instance Creation - success");
+                        $("#modal-body").html(modalData);
+                        $("#myModal").modal();
+                    }else{
+                        alert("Creation of instance(s) failed")
+                    }
+                }
+            });
+        });
+
+        function updateVPC(){
+            var selectedSG = $("#securityGroup").val();
+            for(var i = 0; i < securityGroupList.length; i++){
+                var securityGroup = securityGroupList[i];
+                if(selectedSG == securityGroup['GroupId']){
+                    $("#vpc").val(securityGroup['VpcId']);
+                }
+            }
+        }
+    </script>
+</html>
